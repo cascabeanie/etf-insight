@@ -1,8 +1,10 @@
+import { fetchFundData } from "@/lib/actions/fetch-fund-data";
+
 import Search from "@/components/header/search";
 import Summary from "@/components/main/summary";
+import HandledErrorUI from "@/components/error/handle-error-ui";
 
-import { inputType } from "@/types/types";
-import { fetchFundData } from "@/lib/actions/fetch-fund-data";
+import { inputType, responseType } from "@/types/types";
 
 export default async function Home({
   searchParams,
@@ -11,7 +13,11 @@ export default async function Home({
 }) {
   const params = await searchParams;
 
-  const response = await fetchFundData(params);
+  const response: responseType = await fetchFundData(params);
+
+  /* For testing */
+  /*  throw new Error(); */
+  console.log(response);
 
   return (
     <>
@@ -19,9 +25,13 @@ export default async function Home({
         <Search />
       </header>
 
-      <main>
-        <Summary res={response} />
-      </main>
+      {response.code === 200 ? (
+        <main>
+          <Summary res={response} />
+        </main>
+      ) : (
+        <HandledErrorUI res={response} />
+      )}
     </>
   );
 }

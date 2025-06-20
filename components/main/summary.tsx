@@ -1,7 +1,5 @@
-/* import { inputType } from "@/types/types"; */
+import { responseType } from "@/types/types";
 
-export default function Summary({ res }: any) {
-  console.log(res);
-
+export default function Summary({ res }: { res: responseType }) {
   return <></>;
 }

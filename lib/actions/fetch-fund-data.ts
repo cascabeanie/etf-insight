@@ -15,14 +15,15 @@ export async function fetchFundData(input: inputType) {
 
   /* For testing */
   const queryOptions: any = {
-    period1: "2025-06-19",
+    period1: "2025-06-20",
     interval: "5m",
+    /* interval: "200d", */
   };
 
   if (query === undefined) {
-    console.log("No input yet.");
     return {
-      success: false,
+      status: "success",
+      code: 204,
       data: null,
       message: "Input is empty",
     };
@@ -31,26 +32,61 @@ export async function fetchFundData(input: inputType) {
   try {
     const result = await yahooFinance.chart(query, queryOptions);
 
+    /*  For testing */
+    /*  throw new Error(); */
+
     if (result.meta.instrumentType !== "ETF") {
       return {
-        success: false,
+        status: "error",
+        code: 403,
         data: null,
-        message: "That ticker does not much a valid exchange traded fund (ETF)",
+        message: "The ticker does not match a valid exchange traded fund (ETF)",
       };
     }
 
     return {
-      success: true,
+      status: "success",
+      code: 200,
       data: result,
+      message: "Successful request",
     };
-  } catch (error) {
-    console.log(error);
-
-    return {
-      success: false,
-      data: null,
-      message: "An error occured",
-      error: error,
-    };
+  } catch (error: unknown) {
+    console.log({ error });
+    if (
+      error instanceof Error &&
+      error.message === "No data found, symbol may be delisted"
+    ) {
+      return {
+        status: "error",
+        code: 404,
+        data: null,
+        message: error.message,
+        error: error,
+      };
+    } else if (error instanceof yahooFinance.errors.InvalidOptionsError) {
+      return {
+        status: "error",
+        code: 406,
+        data: null,
+        message: "The query options are not valid",
+        error: error,
+      };
+    } else if (error instanceof yahooFinance.errors.HTTPError) {
+      return {
+        status: "error",
+        code: 500,
+        data: null,
+        message: "An unexpected server error occured",
+        error: error,
+      };
+    } else {
+      return {
+        status: "error",
+        code: 400,
+        data: null,
+        message: "An unexpected error occured",
+        error: error,
+      };
+    }
   }
 }
