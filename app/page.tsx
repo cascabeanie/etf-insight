@@ -1,8 +1,10 @@
 import Search from "@/components/header/search";
 import FundDataContent from "@/components/main/fund-data-content";
-import NoDataUI from "@/components/error/no-data-ui";
+import NoDataUI from "@/components/fallbacks/no-data-ui";
 
 import { inputType } from "@/types/types";
+import { Suspense } from "react";
+import LoadingFundData from "@/components/fallbacks/loading-fund-data";
 
 export default async function Home({
   searchParams,
@@ -17,7 +19,15 @@ export default async function Home({
         <Search />
       </header>
 
-      {params.q ? <FundDataContent params={params} /> : <NoDataUI />}
+      <main className="m-2">
+        {params.q ? (
+          <Suspense key={params.q} fallback={<LoadingFundData />}>
+            <FundDataContent params={params} />
+          </Suspense>
+        ) : (
+          <NoDataUI />
+        )}
+      </main>
     </>
   );
 }

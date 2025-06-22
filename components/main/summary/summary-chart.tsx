@@ -13,18 +13,25 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../ui/chart";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
+} from "../../ui/chart";
+import { ToggleGroup, ToggleGroupItem } from "../../ui/toggle-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import { chartDataType } from "@/types/types";
 import { marketChangeCalculator } from "@/lib/helper/market-change-calculator";
-import NoDataUI from "../error/no-data-ui";
+import NoDataUI from "../../fallbacks/no-data-ui";
 
 const chartConfig = {
   close: {
@@ -33,7 +40,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function Summary({ res }: { res: chartDataType }) {
+export default function SummaryChart({ res }: { res: chartDataType }) {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const pathName = usePathname();
@@ -91,38 +98,77 @@ export default function Summary({ res }: { res: chartDataType }) {
     <>
       {chartData && (
         <Card className="mt-5">
-          <CardHeader className="gap-2 border-b border-zinc-700">
-            <CardTitle>{chartData.meta.longName}</CardTitle>
-            <CardDescription>{chartData.meta.symbol}</CardDescription>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl">
-                  {chartData.meta.regularMarketPrice}
-                </span>
-                <span>{chartData.meta.currency}</span>
+          <CardHeader className="flex flex-col gap-2 border-b border-zinc-700 sm:flex-row sm:justify-between">
+            <div className="flex flex-col gap-1 sm:gap-2">
+              <CardTitle>{chartData.meta.longName}</CardTitle>
+              <CardDescription>{chartData.meta.symbol}</CardDescription>
+
+              <div className="flex flex-row gap-2 sm:flex-col sm:gap-0">
+                <div className="flex items-center gap-1">
+                  <span className="text-3xl">
+                    {chartData.meta.regularMarketPrice}
+                  </span>
+                  <span>{chartData.meta.currency}</span>
+                </div>
+
+                <div
+                  className="flex items-center gap-2"
+                  style={{ color: graphColour }}
+                >
+                  <span>
+                    {changeSign}
+                    {marketChange}
+                  </span>
+                  <span>({marketChangePercent}%)</span>
+                  <TrendIcon size={18} />
+                </div>
               </div>
-              <div
-                className="flex items-center gap-2"
-                style={{ color: graphColour }}
-              >
-                <span>
-                  {changeSign}
-                  {marketChange}
-                </span>
-                <span>({marketChangePercent}%)</span>
-                <TrendIcon size={18} />
-              </div>
+
               <span className="text-xs">
                 As of:{" "}
                 {chartData.meta.regularMarketTime.toLocaleString("en-GB")}
               </span>
             </div>
+
             <CardAction>
+              <Select value={timeRange} onValueChange={setTimeRange}>
+                <SelectTrigger className="w-[100px] rounded-lg sm:hidden">
+                  <SelectValue placeholder="1d" />
+                </SelectTrigger>
+                <SelectContent className="rounded-xl">
+                  <SelectItem value="1d" className="rounded-lg">
+                    1D
+                  </SelectItem>
+                  <SelectItem value="5d" className="rounded-lg">
+                    5D
+                  </SelectItem>
+                  <SelectItem value="1m" className="rounded-lg">
+                    1M
+                  </SelectItem>
+                  <SelectItem value="6m" className="rounded-lg">
+                    6M
+                  </SelectItem>
+                  <SelectItem value="ytd" className="rounded-lg">
+                    YTD
+                  </SelectItem>
+                  <SelectItem value="1y" className="rounded-lg">
+                    1Y
+                  </SelectItem>
+                  <SelectItem value="5y" className="rounded-lg">
+                    5Y
+                  </SelectItem>
+                  <SelectItem value="max" className="rounded-lg">
+                    Max
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+
               <ToggleGroup
                 type="single"
                 value={timeRange}
                 onValueChange={setTimeRange}
                 variant="outline"
+                className="hidden sm:block"
               >
                 <ToggleGroupItem value="1d">1D</ToggleGroupItem>
                 <ToggleGroupItem value="5d">5D</ToggleGroupItem>

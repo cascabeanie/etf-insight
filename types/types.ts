@@ -30,11 +30,17 @@ export type ChartData = {
   meta: {
     currency: string;
     symbol: string;
+    exchangeName: string;
     instrumentType: string;
+    fiftyTwoWeekHigh?: number;
+    fiftyTwoWeekLow?: number;
     firstTradeDate: Date | null;
     regularMarketTime: Date;
     regularMarketPrice: number;
     chartPreviousClose?: number;
+    regularMarketDayHigh?: number;
+    regularMarketDayLow?: number;
+    regularMarketVolume?: number;
     longName?: string;
   };
   quotes: Array<{
