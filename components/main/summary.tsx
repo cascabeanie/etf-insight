@@ -4,15 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { dateFormatConverter } from "@/lib/helper/date-format-converter";
 
-import {
-  Area,
-  AreaChart,
-  /* LineChart,
-  Line, */
-  CartesianGrid,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
   CardAction,
@@ -50,8 +42,19 @@ export default function Summary({ res }: { res: chartDataType }) {
   const [timeRange, setTimeRange] = useState("1d");
   const chartData = res.data;
 
+  useEffect(() => {
+    if (!chartData) return;
+
+    const { p1, interval } = dateFormatConverter(timeRange, chartData);
+
+    params.set("p1", p1);
+    params.set("interval", interval);
+
+    replace(`${pathName}?${params.toString()}`);
+  }, [timeRange]);
+
   if (!chartData) {
-    return <NoDataUI />;
+    return <NoDataUI title={"Error"} description={"No data available"} />;
   }
 
   const {
@@ -78,15 +81,6 @@ export default function Summary({ res }: { res: chartDataType }) {
     },
     Infinity,
   );
-
-  useEffect(() => {
-    const { p1, interval } = dateFormatConverter(timeRange, chartData);
-
-    params.set("p1", p1);
-    params.set("interval", interval);
-
-    replace(`${pathName}?${params.toString()}`);
-  }, [timeRange]);
 
   const processedData = chartData.quotes.map((e: any) => ({
     ...e,
