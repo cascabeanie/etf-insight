@@ -10,9 +10,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { responseType } from "@/types/types";
+import { chartDataType } from "@/types/types";
 
-export default function HandledErrorUI({ res }: { res: responseType }) {
+export default function HandledErrorUI({ res }: { res: chartDataType }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 

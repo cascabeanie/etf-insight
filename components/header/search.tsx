@@ -16,11 +16,19 @@ export default function Search() {
   useEffect(() => {
     function handleSearch(term: string) {
       const params = new URLSearchParams(searchParams);
+      const defaultP1 = new Date().toLocaleDateString("en-CA");
+      const defaultInterval = "5m";
 
       if (term) {
         params.set("q", term);
+        if (!params.has("p1")) {
+          params.set("p1", defaultP1);
+        }
+        if (!params.has("interval")) {
+          params.set("interval", defaultInterval);
+        }
       } else {
-        params.delete("q");
+        ["q", "p1", "interval"].forEach((param) => params.delete(param));
       }
 
       replace(`${pathname}?${params.toString()}`);

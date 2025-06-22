@@ -8,17 +8,17 @@ export async function fetchFundData(input: inputType) {
 
   const query = q;
 
-  /*  const queryOptions = {
-    period1: p1,
+  const queryOptions = {
+    period1: new Date(p1),
     interval: interval,
-  }; */
+  };
 
   /* For testing */
-  const queryOptions: any = {
-    period1: "2025-06-20",
+  /* const queryOptions: any = {
+    period1: "2025-06-19",
+    period2: "2025-06-20",
     interval: "5m",
-    /* interval: "200d", */
-  };
+  }; */
 
   if (query === undefined) {
     return {

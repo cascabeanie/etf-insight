@@ -18,10 +18,32 @@ export type inputType = {
     | undefined;
 };
 
-export type responseType = {
+export type ResponseType<Data> = {
   status: string;
   code: number;
-  data: unknown | null;
+  data: Data | null;
   message: string;
   error?: unknown;
 };
+
+export type ChartData = {
+  meta: {
+    currency: string;
+    symbol: string;
+    instrumentType: string;
+    firstTradeDate: Date | null;
+    regularMarketTime: Date;
+    regularMarketPrice: number;
+    chartPreviousClose?: number;
+    longName?: string;
+  };
+  quotes: Array<{
+    date: Date;
+    high: number | null;
+    low: number | null;
+    open: number | null;
+    close: number | null;
+  }>;
+};
+
+export type chartDataType = ResponseType<ChartData>;
