@@ -6,9 +6,10 @@ import { chartDataType } from "@/types/types";
 export default function Summary({ res }: { res: chartDataType }) {
   return (
     <>
-      <SummaryChart res={res} />
-
-      <SummaryStats res={res} />
+      <div className="flex w-full flex-col lg:max-w-5xl">
+        <SummaryChart res={res} />
+        <SummaryStats res={res} />
+      </div>
     </>
   );
 }

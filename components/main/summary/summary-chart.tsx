@@ -98,12 +98,12 @@ export default function SummaryChart({ res }: { res: chartDataType }) {
     <>
       {chartData && (
         <Card className="mt-5">
-          <CardHeader className="flex flex-col gap-2 border-b border-zinc-700 sm:flex-row sm:justify-between">
+          <CardHeader className="flex flex-col gap-2 border-b border-zinc-700 lg:flex-row lg:justify-between">
             <div className="flex flex-col gap-1 sm:gap-2">
               <CardTitle>{chartData.meta.longName}</CardTitle>
               <CardDescription>{chartData.meta.symbol}</CardDescription>
 
-              <div className="flex flex-row gap-2 sm:flex-col sm:gap-0">
+              <div className="flex flex-row gap-2 sm:gap-0 md:flex-col">
                 <div className="flex items-center gap-1">
                   <span className="text-3xl">
                     {chartData.meta.regularMarketPrice}
@@ -132,7 +132,7 @@ export default function SummaryChart({ res }: { res: chartDataType }) {
 
             <CardAction>
               <Select value={timeRange} onValueChange={setTimeRange}>
-                <SelectTrigger className="w-[100px] rounded-lg sm:hidden">
+                <SelectTrigger className="w-[100px] rounded-lg md:hidden">
                   <SelectValue placeholder="1d" />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl">
@@ -168,7 +168,7 @@ export default function SummaryChart({ res }: { res: chartDataType }) {
                 value={timeRange}
                 onValueChange={setTimeRange}
                 variant="outline"
-                className="hidden sm:block"
+                className="hidden md:block"
               >
                 <ToggleGroupItem value="1d">1D</ToggleGroupItem>
                 <ToggleGroupItem value="5d">5D</ToggleGroupItem>

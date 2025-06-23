@@ -19,7 +19,7 @@ export default async function Home({
         <Search />
       </header>
 
-      <main className="m-2">
+      <main className="m-2 flex flex-col items-center">
         {params.q ? (
           <Suspense key={params.q} fallback={<LoadingFundData />}>
             <FundDataContent params={params} />
