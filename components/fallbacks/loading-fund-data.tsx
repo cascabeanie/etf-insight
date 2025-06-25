@@ -5,7 +5,7 @@ import { Loader } from "lucide-react";
 export default function LoadingFundData() {
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex w-full justify-center">
         <Card className="m-5 w-full max-w-3xl">
           <CardHeader>
             <CardTitle className="flex animate-pulse items-center gap-2 text-xl">

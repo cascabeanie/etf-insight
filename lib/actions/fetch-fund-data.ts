@@ -22,12 +22,21 @@ export async function fetchFundData(input: inputType) {
   }; */
 
   try {
-    const result = await yahooFinance.chart(query, queryOptions);
+    const chartResult = await yahooFinance.chart(query, queryOptions);
+
+    const quoteSummaryResult = await yahooFinance.quoteSummary(query, {
+      modules: [
+        "fundProfile",
+        "fundPerformance",
+        "summaryDetail",
+        "topHoldings",
+      ],
+    });
 
     /*  For testing */
     /* throw new Error(); */
 
-    if (result.meta.instrumentType !== "ETF") {
+    if (chartResult.meta.instrumentType !== "ETF") {
       return {
         status: "Input Error",
         code: 403,
@@ -38,7 +47,8 @@ export async function fetchFundData(input: inputType) {
     return {
       status: "Success",
       code: 200,
-      data: result,
+      chartData: chartResult,
+      quoteSummaryData: quoteSummaryResult,
       message: "Successful request",
     };
   } catch (error: unknown) {

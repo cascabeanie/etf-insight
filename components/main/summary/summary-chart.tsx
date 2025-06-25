@@ -47,7 +47,7 @@ export default function SummaryChart({ res }: { res: chartDataType }) {
   const { replace } = useRouter();
 
   const [timeRange, setTimeRange] = useState("1d");
-  const chartData = res.data;
+  const chartData = res.chartData;
 
   useEffect(() => {
     if (!chartData) return;

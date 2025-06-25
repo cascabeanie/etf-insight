@@ -21,7 +21,8 @@ export type inputType = {
 export type ResponseType<Data> = {
   status: string;
   code: number;
-  data?: Data;
+  chartData?: Data;
+  quoteSummaryData?: any;
   message: string;
   error?: unknown;
 };

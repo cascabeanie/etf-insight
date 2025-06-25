@@ -1,10 +1,12 @@
 import { fetchFundData } from "@/lib/actions/fetch-fund-data";
 
 import Summary from "./summary/summary";
-import SummaryChart from "./summary/summary-chart";
+import Profile from "./profile/profile";
 import NoDataUI from "../fallbacks/no-data-ui";
 
 import { chartDataType, inputType } from "@/types/types";
+
+import { dummyData } from "@/data/dummy-data";
 
 export default async function FundDataContent({
   params,
@@ -13,21 +15,21 @@ export default async function FundDataContent({
 }) {
   const query = params.q;
 
-  /* For testing */
-  /* await new Promise((resolve) => setTimeout(resolve, 1000));
-  console.log("Finished timeout"); */
-
-  const response: chartDataType | null = query
+  /* const response: chartDataType | null = query
     ? await fetchFundData(params)
-    : null;
+    : null; */
 
   /* For testing */
-  console.log(response);
+  /* console.log(response); */
+  const response = dummyData;
 
   return (
     <>
-      {response?.data ? (
-        <Summary res={response} />
+      {response?.chartData ? (
+        <>
+          <Summary res={response} />
+          <Profile res={response} />
+        </>
       ) : (
         <NoDataUI
           title={response?.status}

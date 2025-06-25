@@ -17,7 +17,7 @@ export default function NoDataUI({
 }) {
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex w-full justify-center">
         <Card className="m-5 w-full max-w-3xl">
           <CardHeader>
             <CardTitle>{title ? title : <h2>No Input yet </h2>}</CardTitle>

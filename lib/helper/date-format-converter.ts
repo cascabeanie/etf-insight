@@ -4,7 +4,7 @@ export function dateFormatConverter(
 ) {
   const todaysDate = new Date();
   let startDate: string;
-  let interval = "1d";
+  let interval = "5m";
 
   const adjustForTradingDay = (date: Date, targetDay: "Monday" | "Friday") => {
     const resultDate = new Date(date);
@@ -32,7 +32,9 @@ export function dateFormatConverter(
   if (timeRange === "ytd") {
     const year = todaysDate.getFullYear();
     startDate = new Date(year, 0, 1).toLocaleDateString("en-CA");
+    interval = "1d";
   } else if (timeRange === "max") {
+    interval = "1d";
     if (!data.meta.firstTradeDate) {
       startDate = new Date("2000-01-01").toLocaleDateString("en-CA");
     } else {
@@ -53,15 +55,19 @@ export function dateFormatConverter(
         break;
       case "1m":
         daysToSubtract = 30;
+        interval = "1d";
         break;
       case "6m":
         daysToSubtract = 180;
+        interval = "1d";
         break;
       case "1y":
         daysToSubtract = 365;
+        interval = "1d";
         break;
       case "5y":
         daysToSubtract = 1825;
+        interval = "1d";
         break;
       default:
         break;
