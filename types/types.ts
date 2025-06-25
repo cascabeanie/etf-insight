@@ -18,11 +18,11 @@ export type inputType = {
     | undefined;
 };
 
-export type ResponseType<Data> = {
+export type ResponseType<APIChartData, APIQuoteSummaryData> = {
   status: string;
   code: number;
-  chartData?: Data;
-  quoteSummaryData?: any;
+  chartData?: APIChartData;
+  quoteSummaryData?: APIQuoteSummaryData;
   message: string;
   error?: unknown;
 };
@@ -53,4 +53,35 @@ export type ChartData = {
   }>;
 };
 
-export type chartDataType = ResponseType<ChartData>;
+export type quoteSummaryData = {
+  topHoldings?: {
+    holdings: Array<{
+      symbol: string;
+      holdingName: string;
+      holdingPercent: number;
+    }>;
+    sectorWeightings: Array<{
+      realestate?: number;
+      consumer_cyclical?: number;
+      basic_materials?: number;
+      consumer_defensive?: number;
+      technology?: number;
+      communication_services?: number;
+      financial_services?: number;
+      utilities?: number;
+      industrials?: number;
+      energy?: number;
+      healthcare?: number;
+    }>;
+  };
+  fundPerformance?: {
+    annualTotalReturns?: {
+      returns: Array<{
+        year: number | Date;
+        annualValue?: number;
+      }>;
+    };
+  };
+};
+
+export type APIDataType = ResponseType<ChartData, quoteSummaryData>;

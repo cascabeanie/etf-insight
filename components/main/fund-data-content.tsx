@@ -4,7 +4,7 @@ import Summary from "./summary/summary";
 import Profile from "./profile/profile";
 import NoDataUI from "../fallbacks/no-data-ui";
 
-import { chartDataType, inputType } from "@/types/types";
+import { APIDataType, inputType } from "@/types/types";
 
 import { dummyData } from "@/data/dummy-data";
 
@@ -15,13 +15,13 @@ export default async function FundDataContent({
 }) {
   const query = params.q;
 
-  /* const response: chartDataType | null = query
+  const response: APIDataType | null = query
     ? await fetchFundData(params)
-    : null; */
+    : null;
 
   /* For testing */
   /* console.log(response); */
-  const response = dummyData;
+  /* const response = dummyData; */
 
   return (
     <>

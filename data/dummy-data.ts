@@ -91,7 +91,7 @@ export const dummyData = {
     ],
   },
   quoteSummaryData: {
-    fundProfile: {
+    /*  fundProfile: {
       styleBoxUrl: "https://s.yimg.com/lq/i/fi/3_0...",
       family: "Vanguard Group (Ireland) Limited",
       legalType: "Exchange Traded Fund",
@@ -110,8 +110,8 @@ export const dummyData = {
         projectionValuesCat: {},
       },
       brokerages: [],
-    },
-    summaryDetail: {
+    }, */
+    /*  summaryDetail: {
       priceHint: 2,
       previousClose: 109.27,
       open: 110.44,
@@ -136,7 +136,7 @@ export const dummyData = {
       navPrice: 148.5393,
       currency: "GBP",
       tradeable: false,
-    },
+    }, */
     topHoldings: {
       cashPosition: 0,
       stockPosition: 0.9993,
