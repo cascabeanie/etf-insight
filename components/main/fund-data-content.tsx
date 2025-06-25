@@ -15,13 +15,13 @@ export default async function FundDataContent({
 }) {
   const query = params.q;
 
-  const response: APIDataType | null = query
+  /* const response: APIDataType | null = query
     ? await fetchFundData(params)
-    : null;
+    : null; */
 
   /* For testing */
   /* console.log(response); */
-  /* const response = dummyData; */
+  const response: APIDataType = dummyData;
 
   return (
     <>

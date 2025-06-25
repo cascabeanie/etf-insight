@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { chartDataType } from "@/types/types";
+import { APIDataType } from "@/types/types";
 import { marketChangeCalculator } from "@/lib/helper/market-change-calculator";
 import NoDataUI from "../../fallbacks/no-data-ui";
 
@@ -40,7 +40,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function SummaryChart({ res }: { res: chartDataType }) {
+export default function SummaryChart({ res }: { res: APIDataType }) {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const pathName = usePathname();

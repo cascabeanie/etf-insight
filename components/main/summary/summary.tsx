@@ -1,9 +1,9 @@
 import SummaryChart from "./summary-chart";
 import SummaryStats from "./summary-stats";
 
-import { chartDataType } from "@/types/types";
+import { APIDataType } from "@/types/types";
 
-export default function Summary({ res }: { res: chartDataType }) {
+export default function Summary({ res }: { res: APIDataType }) {
   return (
     <>
       <div className="flex w-full flex-col lg:max-w-5xl">

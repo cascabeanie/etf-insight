@@ -244,11 +244,11 @@ export const dummyData = {
       },
       annualTotalReturns: {
         returns: [
-          { year: "2024", annualValue: 0.17646061 },
-          { year: "2023", annualValue: 0.22279578 },
-          { year: "2022", annualValue: -0.18109569 },
-          { year: "2021", annualValue: 0.1845769 },
-          { year: "2020", annualValue: 0.1619247 },
+          { year: new Date("2024"), annualValue: 0.17646061 },
+          { year: new Date("2023"), annualValue: 0.22279578 },
+          { year: new Date("2022"), annualValue: -0.18109569 },
+          { year: new Date("2021"), annualValue: 0.1845769 },
+          { year: new Date("2020"), annualValue: 0.1619247 },
         ],
       },
       pastQuarterlyReturns: {

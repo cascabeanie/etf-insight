@@ -5,9 +5,9 @@ import Holdings from "./holdings/holdings";
 import Performance from "./performance/performance";
 import Assets from "./assets/assets";
 
-import { chartDataType } from "@/types/types";
+import { APIDataType } from "@/types/types";
 
-export default function Profile({ res }: { res: chartDataType }) {
+export default function Profile({ res }: { res: APIDataType }) {
   const quoteSummaryData = res.quoteSummaryData;
 
   return (

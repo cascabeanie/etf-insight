@@ -1,7 +1,7 @@
-import { chartDataType } from "@/types/types";
+import { APIDataType } from "@/types/types";
 import { Separator } from "@/components/ui/separator";
 
-export default function SummaryStats({ res }: { res: chartDataType }) {
+export default function SummaryStats({ res }: { res: APIDataType }) {
   const chartData = res.chartData;
 
   return (
