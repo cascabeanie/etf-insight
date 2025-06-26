@@ -8,8 +8,6 @@ import Assets from "./assets/assets";
 import { APIDataType } from "@/types/types";
 
 export default function Profile({ res }: { res: APIDataType }) {
-  const quoteSummaryData = res.quoteSummaryData;
-
   return (
     <>
       <Separator className="my-4" />
@@ -23,12 +21,12 @@ export default function Profile({ res }: { res: APIDataType }) {
           </TabsList>
 
           <TabsContent value="holdings" className="mt-2 w-full">
-            <Holdings data={quoteSummaryData} />
+            <Holdings res={res} />
           </TabsContent>
-          <TabsContent value="assets" className="w-full">
-            <Assets />
+          <TabsContent value="assets" className="mt-2 w-full">
+            <Assets res={res} />
           </TabsContent>
-          <TabsContent value="performance" className="w-full">
+          <TabsContent value="performance" className="mt-2 w-full">
             <Performance />
           </TabsContent>
         </Tabs>

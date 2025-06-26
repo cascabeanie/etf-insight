@@ -9,8 +9,14 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export default function HoldingsPieChart({ data }: any) {
-  const chartData = data.topHoldings.holdings;
+import { quoteSummaryData } from "@/types/types";
+
+export default function HoldingsPieChart({
+  data,
+}: {
+  data: quoteSummaryData | undefined;
+}) {
+  const chartData = data?.topHoldings?.holdings;
 
   const chartConfig = {} satisfies ChartConfig;
 
@@ -27,14 +33,12 @@ export default function HoldingsPieChart({ data }: any) {
     "#343434",
   ];
 
-  const processedData = chartData.map((e: any, i: any) => ({
+  const processedData = chartData?.map((e, i: number) => ({
     ...e,
     formattedHoldingPercent: parseFloat((e.holdingPercent * 100).toFixed(2)),
 
     fill: fillColours[i],
   }));
-
-  console.log(processedData);
 
   return (
     <>

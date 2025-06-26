@@ -3,17 +3,20 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-import HoldingsPieChart from "./holdings-pie-chart";
 import { Separator } from "@/components/ui/separator";
 
-export default function Holdings({ data }: any) {
+import HoldingsPieChart from "./holdings-pie-chart";
+
+import { APIDataType } from "@/types/types";
+
+export default function Holdings({ res }: { res: APIDataType }) {
+  const data = res.quoteSummaryData;
+
   return (
     <>
       <Card className="h-full">
@@ -42,7 +45,7 @@ export default function Holdings({ data }: any) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.topHoldings.holdings.map((holding: any) => (
+              {data?.topHoldings?.holdings.map((holding: any) => (
                 <TableRow key={holding.holdingName}>
                   <TableCell className="font-medium">
                     {holding.holdingName}

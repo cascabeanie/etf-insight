@@ -61,6 +61,7 @@ export type quoteSummaryData = {
       holdingPercent: number;
     }>;
     sectorWeightings: Array<{
+      [key: string]: number | undefined;
       realestate?: number;
       consumer_cyclical?: number;
       basic_materials?: number;
