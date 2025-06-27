@@ -15,9 +15,15 @@ import { APIDataType } from "@/types/types";
 
 export default function AssetsBarChart({ data }: { data: APIDataType }) {
   const chartData = data.quoteSummaryData?.topHoldings?.sectorWeightings;
-  const chartConfig = {} satisfies ChartConfig;
+  const chartConfig = {
+    weightingPercentage: {
+      label: "Percentage Allocation",
+    },
+  } satisfies ChartConfig;
 
   const processedData = assetDataProcessor(chartData);
+
+  console.log(processedData);
 
   return (
     <>
@@ -51,7 +57,7 @@ export default function AssetsBarChart({ data }: { data: APIDataType }) {
           <XAxis dataKey="weightingPercentage" type="number" hide />
           <ChartTooltip
             cursor={false}
-            content={<ChartTooltipContent className="w-[12rem]" />}
+            content={<ChartTooltipContent className="w-[13rem]" />}
           />
           <Bar dataKey="weightingPercentage" layout="vertical" radius={5} />
         </BarChart>

@@ -48,7 +48,7 @@ export default function HoldingsPieChart({
       >
         <PieChart>
           <ChartTooltip
-            content={<ChartTooltipContent hideLabel className="w-[12rem]" />}
+            content={<ChartTooltipContent hideLabel className="w-[6rem]" />}
           />
           <Pie
             data={processedData}

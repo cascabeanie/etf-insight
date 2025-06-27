@@ -27,7 +27,7 @@ export default function Profile({ res }: { res: APIDataType }) {
             <Assets res={res} />
           </TabsContent>
           <TabsContent value="performance" className="mt-2 w-full">
-            <Performance />
+            <Performance res={res} />
           </TabsContent>
         </Tabs>
       </div>

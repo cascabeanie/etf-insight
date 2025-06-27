@@ -30,7 +30,7 @@ const expectedReturn = [
 
 describe("Function to format keys", () => {
   it("should return the keys with a capital first letter", () => {
-    expect(formatKeys([{ hello: "1", goodbye: "2" }])).toEqual([
+    expect(formatKeys([{ hello: 1, goodbye: 2 }])).toEqual([
       "Hello",
       "Goodbye",
     ]);
