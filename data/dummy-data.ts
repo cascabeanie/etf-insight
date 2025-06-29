@@ -91,52 +91,19 @@ export const dummyData = {
     ],
   },
   quoteSummaryData: {
-    /*  fundProfile: {
-      styleBoxUrl: "https://s.yimg.com/lq/i/fi/3_0...",
+    fundProfile: {
       family: "Vanguard Group (Ireland) Limited",
+      categoryName: "Large Blend",
       legalType: "Exchange Traded Fund",
-      managementInfo: {
-        managerName: null,
-        managerBio: null,
-      },
       feesExpensesInvestment: {
         annualReportExpenseRatio: 0,
-        annualHoldingsTurnover: 0.07,
-        totalNetAssets: 146908.6,
-        projectionValues: {},
       },
-      feesExpensesInvestmentCat: {
-        totalNetAssets: 146908.6,
-        projectionValuesCat: {},
-      },
-      brokerages: [],
-    }, */
-    /*  summaryDetail: {
-      priceHint: 2,
-      previousClose: 109.27,
-      open: 110.44,
-      dayLow: 109.8,
-      dayHigh: 110.6,
-      regularMarketPreviousClose: 109.27,
-      regularMarketOpen: 110.44,
-      regularMarketDayLow: 109.8,
-      regularMarketDayHigh: 110.6,
-      volume: 86666,
-      regularMarketVolume: 86666,
-      averageVolume: 144629,
-      averageVolume10days: 103163,
-      averageDailyVolume10Day: 103163,
-      bid: 110.08,
-      ask: 110.14,
+    },
+    summaryDetail: {
+      yield: 0.0121,
       totalAssets: 37080571904,
-      fiftyTwoWeekLow: 91.99,
-      fiftyTwoWeekHigh: 117.88,
-      fiftyDayAverage: 106.6063,
-      twoHundredDayAverage: 108.9176,
       navPrice: 148.5393,
-      currency: "GBP",
-      tradeable: false,
-    }, */
+    },
     topHoldings: {
       cashPosition: 0,
       stockPosition: 0.9993,

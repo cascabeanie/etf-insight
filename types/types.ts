@@ -97,6 +97,21 @@ export type quoteSummaryData = {
       }>;
     };
   };
+  fundProfile?: {
+    [key: string]: unknown;
+    family: null | string;
+    categoryName: null | string;
+    legalType: null | string;
+    feesExpensesInvestment?: {
+      [key: string]: unknown;
+      annualReportExpenseRatio?: number;
+    };
+  };
+  summaryDetail?: {
+    yield?: number;
+    totalAssets?: number;
+    navPrice?: number;
+  };
 };
 
 export type APIDataType = ResponseType<ChartData, quoteSummaryData>;

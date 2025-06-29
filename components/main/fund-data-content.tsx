@@ -15,7 +15,7 @@ export default async function FundDataContent({
 }) {
   const query = params.q;
 
-  /* const response: APIDataType | null = query
+  /*  const response: APIDataType | null = query
     ? await fetchFundData(params)
     : null; */
 

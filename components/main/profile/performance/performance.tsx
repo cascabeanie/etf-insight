@@ -20,9 +20,6 @@ export default function Performance({ res }: { res: APIDataType }) {
             <CardTitle>Annual Total Return</CardTitle>
           </div>
           <Separator className="mt-4" />
-          <CardDescription className="flex justify-center">
-            Annual total returns for fund vs. index benchmark
-          </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col px-2 lg:flex-row lg:items-center lg:px-6">
           <div className="w-full">

@@ -3,7 +3,7 @@
 import { performanceProcessor } from "@/lib/helper/chart-data-processing/performance-processor";
 
 import { Bar, BarChart, XAxis } from "recharts";
-
+import { CardDescription } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -28,6 +28,10 @@ export default function PerformanceBarChart({ data }: { data: APIDataType }) {
 
   return (
     <>
+      <CardDescription className="text-center">
+        {`${processedData.length}-Year Annual Performance: Fund vs. Benchmark`}
+      </CardDescription>
+
       <ChartContainer config={chartConfig} className="max-h-[500px] w-full">
         <BarChart accessibilityLayer data={processedData}>
           <XAxis dataKey="formattedYear" axisLine={false} interval={0} />
