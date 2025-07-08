@@ -34,7 +34,7 @@ export async function fetchFundData(input: inputType) {
     });
 
     /*  For testing */
-    /* throw new Error(); */
+    /*  throw new Error(); */
 
     if (chartResult.meta.instrumentType !== "ETF") {
       return {

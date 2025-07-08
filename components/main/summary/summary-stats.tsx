@@ -38,7 +38,7 @@ export default function SummaryStats({ res }: { res: APIDataType }) {
               <TableRow>
                 <TableHead className="w-40 lg:w-36">Open</TableHead>
                 <TableCell className="w-40 lg:w-28">
-                  {chartData?.quotes[0].open?.toFixed(2)}
+                  {chartData?.quotes[0]?.open?.toFixed(2)}
                 </TableCell>
               </TableRow>
               <TableRow>
