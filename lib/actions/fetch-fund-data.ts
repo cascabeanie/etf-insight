@@ -22,7 +22,7 @@ export async function fetchFundData(input: inputType) {
   }; */
 
   try {
-    const chartResult = await yahooFinance.chart(query, queryOptions);
+    /*  const chartResult = await yahooFinance.chart(query, queryOptions);
 
     const quoteSummaryResult = await yahooFinance.quoteSummary(query, {
       modules: [
@@ -31,7 +31,19 @@ export async function fetchFundData(input: inputType) {
         "summaryDetail",
         "topHoldings",
       ],
-    });
+    }); */
+
+    const [chartResult, quoteSummaryResult] = await Promise.all([
+      yahooFinance.chart(query, queryOptions),
+      yahooFinance.quoteSummary(query, {
+        modules: [
+          "fundProfile",
+          "fundPerformance",
+          "summaryDetail",
+          "topHoldings",
+        ],
+      }),
+    ]);
 
     /*  For testing */
     /*  throw new Error(); */

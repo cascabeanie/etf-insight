@@ -47,15 +47,15 @@ export default function Assets({ res }: { res: APIDataType }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {processedData?.map((sector: any, index: number) => {
-                const [name, value]: any = Object.entries(sector)[0];
-
+              {processedData?.map((sector, index: number) => {
                 return (
                   <TableRow key={index}>
                     <TableCell className="font-medium">
-                      {sector.formattedName}
+                      {sector?.formattedName}
                     </TableCell>
-                    <TableCell>{(value * 100).toFixed(2)}%</TableCell>
+                    <TableCell>
+                      {sector?.weightingPercentage.toFixed(2)}%
+                    </TableCell>
                   </TableRow>
                 );
               })}

@@ -10,7 +10,6 @@ import {
   CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../ui/card";
@@ -29,7 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { APIDataType } from "@/types/types";
+import { APIDataType, Quote } from "@/types/types";
 import { marketChangeCalculator } from "@/lib/helper/market-change-calculator";
 import NoDataUI from "../../fallbacks/no-data-ui";
 
@@ -42,7 +41,6 @@ const chartConfig = {
 
 export default function SummaryChart({ res }: { res: APIDataType }) {
   const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
   const pathName = usePathname();
   const { replace } = useRouter();
 
@@ -50,6 +48,7 @@ export default function SummaryChart({ res }: { res: APIDataType }) {
   const chartData = res.chartData;
 
   useEffect(() => {
+    const params = new URLSearchParams(searchParams);
     if (!chartData) return;
 
     const { p1, interval } = dateFormatConverter(timeRange, chartData);
@@ -58,10 +57,10 @@ export default function SummaryChart({ res }: { res: APIDataType }) {
     params.set("interval", interval);
 
     replace(`${pathName}?${params.toString()}`);
-  }, [timeRange]);
+  }, [timeRange, pathName, replace, searchParams]);
 
   if (!chartData) {
-    return <NoDataUI title={"Error"} description={"No data available"} />;
+    return <NoDataUI status={"Error"} message={"No data available"} />;
   }
 
   const {
@@ -76,20 +75,24 @@ export default function SummaryChart({ res }: { res: APIDataType }) {
   );
 
   const highDomain = chartData.quotes.reduce(
-    (accumulator: any, currentValue: any) => {
-      return currentValue.high > accumulator ? currentValue.high : accumulator;
+    (accumulator, currentValue: Quote) => {
+      return currentValue.high !== null && currentValue.high > accumulator
+        ? currentValue.high
+        : accumulator;
     },
     0,
   );
 
   const lowDomain = chartData.quotes.reduce(
-    (accumulator: any, currentValue: any) => {
-      return currentValue.low < accumulator ? currentValue.low : accumulator;
+    (accumulator, currentValue: Quote) => {
+      return currentValue.low !== null && currentValue.low < accumulator
+        ? currentValue.low
+        : accumulator;
     },
     Infinity,
   );
 
-  const processedData = chartData.quotes.map((e: any) => ({
+  const processedData = chartData.quotes.map((e) => ({
     ...e,
     formattedDate: e.date.toString(),
   }));

@@ -23,8 +23,6 @@ export default function AssetsBarChart({ data }: { data: APIDataType }) {
 
   const processedData = assetDataProcessor(chartData);
 
-  console.log(processedData);
-
   return (
     <>
       <ChartContainer config={chartConfig} className="max-h-[300px] w-full">

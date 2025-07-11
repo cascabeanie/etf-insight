@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useRef } from "react";
+import { useRef } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 

@@ -45,7 +45,7 @@ export default function Holdings({ res }: { res: APIDataType }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.topHoldings?.holdings.map((holding: any) => (
+              {data?.topHoldings?.holdings.map((holding) => (
                 <TableRow key={holding.holdingName}>
                   <TableCell className="font-medium">
                     {holding.holdingName}

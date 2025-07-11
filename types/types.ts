@@ -18,6 +18,14 @@ export type inputType = {
     | undefined;
 };
 
+export type Quote = {
+  date: Date;
+  high: number | null;
+  low: number | null;
+  open: number | null;
+  close: number | null;
+};
+
 export type ResponseType<APIChartData, APIQuoteSummaryData> = {
   status: string;
   code: number;

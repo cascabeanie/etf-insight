@@ -35,7 +35,7 @@ export default function Search() {
     }
 
     handleSearch(debouncedSearch);
-  }, [debouncedSearch]);
+  }, [debouncedSearch, pathname, replace, searchParams]);
 
   return (
     <>

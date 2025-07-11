@@ -6,7 +6,7 @@ import NoDataUI from "../fallbacks/no-data-ui";
 
 import { APIDataType, inputType } from "@/types/types";
 
-import { dummyData } from "@/data/dummy-data";
+/* import { dummyData } from "@/data/dummy-data"; */
 
 export default async function FundDataContent({
   params,
@@ -20,7 +20,6 @@ export default async function FundDataContent({
     : null;
 
   /* For testing */
-  /* console.log(response); */
   /*   const response: APIDataType = dummyData; */
 
   return (
