@@ -6,8 +6,6 @@ import NoDataUI from "../fallbacks/no-data-ui";
 
 import { APIDataType, inputType } from "@/types/types";
 
-/* import { dummyData } from "@/data/dummy-data"; */
-
 export default async function FundDataContent({
   params,
 }: {
@@ -18,9 +16,6 @@ export default async function FundDataContent({
   const response: APIDataType | null = query
     ? await fetchFundData(params)
     : null;
-
-  /* For testing */
-  /*   const response: APIDataType = dummyData; */
 
   return (
     <>

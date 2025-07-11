@@ -14,25 +14,7 @@ export async function fetchFundData(input: inputType) {
     interval: interval,
   };
 
-  /* For testing */
-  /* const queryOptions: any = {
-    period1: "2025-06-19",
-    period2: "2025-06-20",
-    interval: "5m",
-  }; */
-
   try {
-    /*  const chartResult = await yahooFinance.chart(query, queryOptions);
-
-    const quoteSummaryResult = await yahooFinance.quoteSummary(query, {
-      modules: [
-        "fundProfile",
-        "fundPerformance",
-        "summaryDetail",
-        "topHoldings",
-      ],
-    }); */
-
     const [chartResult, quoteSummaryResult] = await Promise.all([
       yahooFinance.chart(query, queryOptions),
       yahooFinance.quoteSummary(query, {
@@ -44,9 +26,6 @@ export async function fetchFundData(input: inputType) {
         ],
       }),
     ]);
-
-    /*  For testing */
-    /*  throw new Error(); */
 
     if (chartResult.meta.instrumentType !== "ETF") {
       return {
@@ -65,14 +44,26 @@ export async function fetchFundData(input: inputType) {
     };
   } catch (error: unknown) {
     console.log({ error });
+
     if (
       error instanceof Error &&
-      error.message === "No data found, symbol may be delisted"
+      (error.message.toLowerCase().includes("delisted") ||
+        error.message.toLowerCase().includes("not found"))
     ) {
       return {
         status: "Input Error",
         code: 404,
         message: error.message,
+        error: error,
+      };
+    } else if (
+      error instanceof yahooFinance.errors.FailedYahooValidationError
+    ) {
+      return {
+        status: "Input Error",
+        code: 422,
+        message:
+          "Invalid or incomplete data returned from Yahoo Finance. The symbol may be delisted, suspended, or have insufficient data.",
         error: error,
       };
     } else if (error instanceof yahooFinance.errors.InvalidOptionsError) {
