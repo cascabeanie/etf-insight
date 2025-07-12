@@ -22,7 +22,10 @@ export default async function Home({
 
       <main className="m-2 flex flex-col items-center">
         {params.q ? (
-          <Suspense key={params.q} fallback={<LoadingFundData />}>
+          <Suspense
+            key={params.q}
+            fallback={<LoadingFundData query={params.q} />}
+          >
             <FundDataContent params={params} />
           </Suspense>
         ) : (
