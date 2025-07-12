@@ -41,7 +41,7 @@ export default function Search() {
     <>
       <div className="w-full max-w-xl p-3">
         <Input
-          placeholder="Enter ticker symbol (e.g., VWRP.L)"
+          placeholder="Enter a single ticker symbol (e.g., VOO)"
           defaultValue={searchParams.get("q")?.toString()}
           onChange={(e) => {
             setSearch(e.target.value);
