@@ -44,7 +44,7 @@ export default function HoldingsPieChart({
     <>
       <ChartContainer
         config={chartConfig}
-        className="[&_.recharts-pie-label-text]:fill-foreground mx-auto aspect-square max-h-[300px] w-full pb-0"
+        className="[&_.recharts-pie-label-text]:fill-foreground mx-auto aspect-square pb-0"
       >
         <PieChart>
           <ChartTooltip
@@ -54,6 +54,7 @@ export default function HoldingsPieChart({
             data={processedData}
             dataKey="formattedHoldingPercent"
             nameKey="symbol"
+            outerRadius="65%"
             label={(value) => {
               return `${(value.holdingPercent * 100).toFixed(2)}%`;
             }}

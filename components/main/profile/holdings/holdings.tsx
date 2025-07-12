@@ -39,7 +39,7 @@ export default function Holdings({ res }: { res: APIDataType }) {
               <TableRow>
                 <TableHead>Company</TableHead>
                 <TableHead>Symbol</TableHead>
-                <TableHead className="whitespace-normal">
+                <TableHead className="text-xs whitespace-normal sm:text-sm">
                   Holding Weight
                 </TableHead>
               </TableRow>
