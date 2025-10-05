@@ -244,6 +244,7 @@ export default function SummaryChart({ res }: { res: APIDataType }) {
                   fill="url(#colour)"
                   fillOpacity={0.5}
                   stroke={graphColour}
+                  isAnimationActive={false}
                 />
               </AreaChart>
             </ChartContainer>
